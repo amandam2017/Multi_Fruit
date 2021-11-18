@@ -3,11 +3,11 @@ module.exports = function MultiFruitBasket(pool){
 
 const newBasket = async (fruitName, qty, price, basketName) => {
 
-    const fruits = await pool.query('SELECT type_of_fruit, basket_name FROM fruit_basket_item WHERE type_of_fruit = $1', [fruitName])
+    const fruits = await pool.query('SELECT type_of_fruit FROM fruit_basket_item WHERE type_of_fruit = $1', [fruitName])
     var idee = await getID(basketName);
-    console.log('which id? ' +idee);
-    if(fruits.rowCount === 0){
-        const count = await pool.query('INSERT INTO fruit_basket_item (type_of_fruit, quantity, price, id) VALUES ($1, $2, $3, $4)', [fruitName, qty, price, idee]);
+     console.log('which id????? ' +idee);
+   if(fruits.rowCount === 0){
+        const count = await pool.query('INSERT INTO fruit_basket_item (type_of_fruit, quantity, price, multi_fruit_basket_id) VALUES ($1, $2, $3, $4)', [fruitName, qty, price, idee]);
     }
 }
 
@@ -21,25 +21,25 @@ const getFruitsFromNewBasket = async () => {
     return fruitsFromNewBasket.rows;
 }
 
-const getID = async (multibasket_id) => {
-    var multifruitbasketID = await pool.query('SELECT id FROM multi_fruit_basket WHERE name = $1',[multibasket_id]);
+const getID = async (basketName) => {
+    var multifruitbasketID = await pool.query('SELECT id FROM multi_fruit_basket WHERE basket_name = $1',['Punnet']);
+    // console.log('which id? ' + multifruitbasketID.rows[0].id);
+//I have used [0].id to get into an object
     return multifruitbasketID.rows[0].id;
 
 }
 
-const getTotalFruit = async () => {
-    var allFruitsInNewBasket = await pool.query('SELECT type_of_fruit, quantity, price FROM fruit_basket_item')
-    return allFruitsInNewBasket.rows;
+// remove fruits from an existing basket
+const removeFromExistingBasket = async (fruitName, fruitNameID) => {
+    const removeFromBasket = await pool.query('DELETE FROM Customers WHERE CustomerName= $2', [fruitNameID]);
 }
-    
 
-
-    return{
-        newBasket,
-        addFruitsToExistingBasket,
-        getTotalFruit,
-        getID,
-        getFruitsFromNewBasket,
-    }
+return{
+    newBasket,
+    addFruitsToExistingBasket,
+    getID,
+    getFruitsFromNewBasket,
+    removeFromExistingBasket,
+}
 
 }

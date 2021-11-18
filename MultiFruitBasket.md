@@ -19,6 +19,12 @@ Create a Factory Functions called `MultiFruitBasket` that should be able to:
 <!-- below update the fruit basket quantity -->
 * add fruits to an existing basket,
 * remove fruits from an existing basket - if there are no fruit left in the basket the basket should be removed,
+<!-- link for info https://dirask.com/posts/MS-SQL-Server-delete-row-where-column-is-null-10reop -->
+
+if there are no fruit left in the basket the basket should be removed
+<!-- DELETE FROM [table_name] WHERE [column_name] = ''; -->
+
+
 <!-- * for a given `id` return the basket_name & id as well as a list of all the fruits in the basket -->
 * return the total cost of a specific basket:
 	* based on basket name
