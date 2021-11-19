@@ -22,7 +22,7 @@ Create a Factory Functions called `MultiFruitBasket` that should be able to:
 <!-- link for info https://dirask.com/posts/MS-SQL-Server-delete-row-where-column-is-null-10reop -->
 
 if there are no fruit left in the basket the basket should be removed
-<!-- DELETE FROM [table_name] WHERE [column_name] = ''; -->
+<!-- DELETE FROM [table_name] WHERE [column_name] = NULL; -->
 
 
 <!-- * for a given `id` return the basket_name & id as well as a list of all the fruits in the basket -->
@@ -31,3 +31,4 @@ if there are no fruit left in the basket the basket should be removed
 	* and on the basket id
 
 Create `tests` for your function and deploy your tests to Travis.
+
