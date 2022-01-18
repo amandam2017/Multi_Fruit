@@ -100,7 +100,7 @@ describe('The multi_fruit_basket', function () {
         await MultiFruitInstance.removeFromExistingBasket('Strawberries');
 
         
-        // console.log('is this removing?'+ await MultiFruitInstance.removeFromExistingBasket('Strawberries'));
+        console.log('is this removing?'+ await MultiFruitInstance.removeAnEmptyBasket().length);
 
 
         assert.deepEqual(null, await MultiFruitInstance.removeAnEmptyBasket().length);

@@ -29,19 +29,16 @@ const getID = async (basketName) => {
 
 }
 // remove fruits from an existing basket
-const removeFromExistingBasket = async (fruitType) => {
-    
+const removeFromExistingBasket = async (fruitType) => {   
     const removeBasket = await pool.query('UPDATE fruit_basket_item SET quantity = quantity-1 WHERE type_of_fruit = $1', [fruitType]);
-
 }
 
 const removeAnEmptyBasket = async (fruitType) => {
-
     //first I want to select from the basket if there is something
     const fruits = await pool.query('SELECT * FROM fruit_basket_item');
 
     if(fruitType.rowCount === 0){
-        const removeBasket = await pool.query('DELETE FROM fruit_basket_item');
+        const removeBasket = await pool.query('DELETE FROM multi_fruit_basket');
     }
 }
 
@@ -49,6 +46,13 @@ const removeAnEmptyBasket = async (fruitType) => {
 const fruitsFromBasket = async (ID) => {
     let fruits = await pool.query('SELECT basket_name, type_of_fruit FROM fruit_basket_item WHERE multi_fruit_basket_id = $1');
     return fruits.rows;
+}
+
+// for a given `id` return the basket_name & id as well as a list of all the fruits in the basket
+const returnPerBasket = async (basketName,basketID) => {
+    await joinedTables();
+    var  basketTotalCost = await pool.query('SELECT basket_name, id FROM fruit_basket_item');
+    return basketTotalCost.rows;
 }
 
 
@@ -75,6 +79,7 @@ return{
     eachBasketTotalCost,
     fruitsFromBasket,
     joinedTables,
+    returnPerBasket,
 }
 
 }
