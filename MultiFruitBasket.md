@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/amandam2017/Multiple_Fruits.svg?branch=master)](https://app.travis-ci.com/amandam2017/Multiple_Fruits)
 # Multiple fruits in a basket
 
 The fruit basket business is booming. And customers now want fruit baskets with more than one fruit in it. 
