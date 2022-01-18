@@ -24,7 +24,7 @@ describe('The multi_fruit_basket', function () {
 
         let MultiFruitInstance = MultiFruitBasket(pool);
 
-        await MultiFruitInstance.newBasket('Cranberries', 1, 4.50, 'Prunes');
+        await MultiFruitInstance.newBasket('Cranberries', 1, 4.50, 'Punnet');
 
 
         // console.log('list?'+ JSON.stringify(await MultiFruitInstance.getFruitsFromNewBasket()));
